@@ -209,7 +209,7 @@ const LETTERS = [
 ];
 
 // ─── STRIPE LINK — Replace with your real Stripe payment link ────────────────
-const STRIPE_LINK = "https://buy.stripe.com/your_link_here";
+const STRIPE_LINK = "https://buy.stripe.com/eVq6oIdelbiF1tA0ZQ7Vm00";
 
 // ─── COMPONENTS ──────────────────────────────────────────────────────────────
 function Leaf() {
