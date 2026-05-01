@@ -456,7 +456,10 @@ export default function App() {
   const [answers, setAnswers] = useState({ state:"", assets:[], relationship:"", timing:"", hasWill:"" });
   const [checked, setChecked] = useState({});
   const [section, setSection] = useState("w1");
-  const [unlocked, setUnlocked] = useState(false); // letters unlocked after payment
+  const [unlocked, setUnlocked] = useState(() => {
+  const params = new URLSearchParams(window.location.search);
+    return params.get("unlocked") === "true";
+  });
   const [openLetter, setOpenLetter] = useState(null);
   const [mounted, setMounted] = useState(false);
   const topRef = useRef();
