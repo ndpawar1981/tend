@@ -209,14 +209,21 @@ const LETTERS = [
 ];
 
 // ─── STRIPE LINK — Replace with your real Stripe payment link ────────────────
-const STRIPE_LINK = "https://buy.stripe.com/eVq6oIdelbiF1tA0ZQ7Vm00";
+const STRIPE_LINK = "https://buy.stripe.com/your_link_here";
 
 // ─── COMPONENTS ──────────────────────────────────────────────────────────────
 function Leaf() {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-      <path d="M12 2C6.5 2 3 7 3 12c0 3.5 2 6.5 5 8l1-3c-1.5-1-2.5-2.8-2.5-5C6.5 8.5 9 6 12 6c4.5 0 8 3.5 8 8 0 2.2-.8 4.2-2.2 5.8L21 22c1.8-2 3-4.8 3-8C24 7.5 18.5 2 12 2z" fill="#6b9e82"/>
-      <path d="M12 10c-2.2 0-4 1.8-4 4 0 1.5.8 2.8 2 3.5L12 22l2-4.5c1.2-.7 2-2 2-3.5 0-2.2-1.8-4-4-4z" fill="#3a5e4e"/>
+    <svg width="28" height="28" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Outer leaf ring */}
+      <path d="M30 6 C16 6 6 16 6 30 C6 40 12 48 21 52 L23 44 C16 41 12 36 12 30 C12 20 20 12 30 12 C40 12 48 20 48 30 C48 36 44 41 37 44 L39 52 C48 48 54 40 54 30 C54 16 44 6 30 6Z" fill="#4a8a6a"/>
+      {/* Inner leaf */}
+      <path d="M30 18 C24 18 18 24 18 30 C18 35 21 39 26 41 L28 35 C25 34 24 32 24 30 C24 27 27 24 30 24 C33 24 36 27 36 30 C36 32 35 34 32 35 L34 41 C39 39 42 35 42 30 C42 24 36 18 30 18Z" fill="#263f34"/>
+      {/* Stem */}
+      <line x1="30" y1="52" x2="30" y2="58" stroke="#4a8a6a" strokeWidth="3" strokeLinecap="round"/>
+      {/* Side sprigs */}
+      <path d="M30 56 Q22 51 18 49" stroke="#4a8a6a" strokeWidth="2" strokeLinecap="round" fill="none"/>
+      <path d="M30 54 Q38 49 42 47" stroke="#4a8a6a" strokeWidth="2" strokeLinecap="round" fill="none"/>
     </svg>
   );
 }
@@ -456,10 +463,7 @@ export default function App() {
   const [answers, setAnswers] = useState({ state:"", assets:[], relationship:"", timing:"", hasWill:"" });
   const [checked, setChecked] = useState({});
   const [section, setSection] = useState("w1");
-  const [unlocked, setUnlocked] = useState(() => {
-  const params = new URLSearchParams(window.location.search);
-    return params.get("unlocked") === "true";
-  });
+  const [unlocked, setUnlocked] = useState(false); // letters unlocked after payment
   const [openLetter, setOpenLetter] = useState(null);
   const [mounted, setMounted] = useState(false);
   const topRef = useRef();
@@ -691,7 +695,7 @@ export default function App() {
       <Card>
         <StepDots current={step} total={5} />
         <PillBadge>{wz.badge}</PillBadge>
-        <h1 style={{ fontFamily:"'Lato',sans-serif", fontSize:24, fontWeight:400, color:T.sageXdk, margin:"0 0 10px", lineHeight:1.3 }}>
+        <h1 style={{ fontFamily:"'Playfair Display',serif", fontSize:24, fontWeight:400, color:T.sageXdk, margin:"0 0 10px", lineHeight:1.3 }}>
           {wz.title}
         </h1>
         <p style={{ fontFamily:"'Lato',sans-serif", fontSize:14, color:T.textMd, lineHeight:1.65, margin:"0 0 24px" }}>
@@ -727,7 +731,7 @@ export default function App() {
           <div style={{ fontFamily:"'Lato',sans-serif", fontSize:11, opacity:0.55, letterSpacing:2, textTransform:"uppercase", marginBottom:8 }}>
             Your personalized guide
           </div>
-          <h1 style={{ fontFamily:"'Lato',sans-serif", fontSize:22, fontWeight:700, margin:"0 0 6px", color:T.cream }}>
+          <h1 style={{ fontFamily:"'Playfair Display',serif", fontSize:22, fontWeight:400, margin:"0 0 6px", color:T.cream }}>
             {answers.state} Estate Administration
           </h1>
           <p style={{ fontFamily:"'Lato',sans-serif", fontSize:13, opacity:0.7, margin:"0 0 18px", lineHeight:1.5 }}>
@@ -800,7 +804,7 @@ export default function App() {
           <div style={{ background: unlocked ? T.sage : T.sageXdk, padding:"20px 24px" }}>
             <div style={{ display:"flex", alignItems:"center", gap:12, flexWrap:"wrap" }}>
               <div>
-                <div style={{ fontFamily:"'Lato',sans-serif", color:T.cream, fontSize:18, fontWeight:400, marginBottom:4 }}>
+                <div style={{ fontFamily:"'Playfair Display',serif", color:T.cream, fontSize:18, fontWeight:400, marginBottom:4 }}>
                   {unlocked ? "📬 Your Letter Library" : "📬 Ready-to-Send Letters"}
                 </div>
                 <div style={{ fontFamily:"'Lato',sans-serif", color:"rgba(232,236,234,0.7)", fontSize:13 }}>
@@ -811,7 +815,7 @@ export default function App() {
               </div>
               {!unlocked && (
                 <div style={{ marginLeft:"auto" }}>
-                  <div style={{ fontFamily:"'Lato',sans-serif", color:"#7dd3b0", fontSize:22, textAlign:"right" }}>$49</div>
+                  <div style={{ fontFamily:"'Playfair Display',serif", color:"#7dd3b0", fontSize:22, textAlign:"right" }}>$49</div>
                   <div style={{ fontFamily:"'Lato',sans-serif", color:"rgba(232,236,234,0.5)", fontSize:11, textAlign:"right" }}>one-time</div>
                 </div>
               )}
@@ -847,6 +851,15 @@ export default function App() {
                     Unlock All Letters — $49 →
                   </button>
                 </a>
+                {/* Demo unlock for prototype */}
+                <div style={{ marginTop:14 }}>
+                  <button
+                    onClick={() => setUnlocked(true)}
+                    style={{ background:"none", border:"none", color:T.textLt, fontSize:12, cursor:"pointer", fontFamily:"'Lato',sans-serif", textDecoration:"underline" }}
+                  >
+                    Preview as demo (prototype only)
+                  </button>
+                </div>
                 <div style={{ fontFamily:"'Lato',sans-serif", fontSize:11, color:T.textLt, marginTop:10 }}>
                   One-time purchase · No subscription · Instant access
                 </div>
@@ -917,7 +930,7 @@ export default function App() {
         {/* Bottom CTA if not unlocked */}
         {!unlocked && (
           <div style={{ background:"linear-gradient(135deg, #1a2e26, #2c4a3e)", borderRadius:18, padding:"32px 28px", textAlign:"center" }}>
-            <div style={{ fontFamily:"'Lato',sans-serif", color:T.cream, fontSize:22, marginBottom:10 }}>
+            <div style={{ fontFamily:"'Playfair Display',serif", color:T.cream, fontSize:22, marginBottom:10 }}>
               Take the paperwork off your plate.
             </div>
             <p style={{ fontFamily:"'Lato',sans-serif", color:"rgba(232,236,234,0.7)", fontSize:14, lineHeight:1.65, margin:"0 0 24px" }}>
@@ -939,10 +952,10 @@ export default function App() {
           </div>
         )}
 
-        <p style={{ textAlign:"center", fontFamily:"'Lato',sans-serif", fontSize:11, color:T.textLt, marginTop:28, lineHeight:1.7 }}>
+        <p style={{ textAlign:"center", fontFamily:"'Lato',sans-serif", fontSize:12, color:T.textMd, marginTop:28, lineHeight:1.9, borderTop:`1px solid ${T.border}`, paddingTop:20 }}>
           Tend provides general guidance and document templates only.<br />
           This is not legal, financial, or tax advice. Please consult a licensed estate attorney for complex situations.<br />
-          © 2026 Tend &nbsp;·&nbsp; support@tendguide.com
+          <span style={{ color:T.text, fontWeight:700 }}>{'\u00A9'} 2026 Tend</span> &nbsp;·&nbsp; <a href="mailto:support@tendguide.com" style={{ color:T.sage, textDecoration:"none" }}>support@tendguide.com</a>
         </p>
       </div>
     </div>
