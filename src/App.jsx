@@ -209,7 +209,7 @@ const LETTERS = [
 ];
 
 // ─── STRIPE LINK — Replace with your real Stripe payment link ────────────────
-const STRIPE_LINK = "https://buy.stripe.com/your_link_here";
+const STRIPE_LINK = "https://buy.stripe.com/eVq6oIdelbiF1tA0ZQ7Vm00";
 
 // ─── COMPONENTS ──────────────────────────────────────────────────────────────
 function Leaf() {
@@ -939,7 +939,7 @@ export default function App() {
         <p style={{ textAlign:"center", fontFamily:"'Lato',sans-serif", fontSize:11, color:T.textLt, marginTop:28, lineHeight:1.7 }}>
           Tend provides general guidance and document templates only.<br />
           This is not legal, financial, or tax advice. Please consult a licensed estate attorney for complex situations.<br />
-          © 2026 Tend &nbsp;·&nbsp; support@usetend.com
+          © 2026 Tend &nbsp;·&nbsp; support@tendguide.com
         </p>
       </div>
     </div>
